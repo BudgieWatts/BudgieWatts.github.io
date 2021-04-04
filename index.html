@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cheat sheet</title>
+    <link rel="stylesheet" href="site/styles.css">
+</head>
+<body>
+<header>Cheat Sheet</header>
+<article>
+    <h1>Testing</h1>
+    <div class="section">
+        <h2>JUnit 5</h2>
+        <div class="section">
+            <h3>gradle</h3>
+            <pre>
+
+    dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
+
+    test {
+    useJUnitPlatform()
+    }
+
+            </pre>
+
+            <div class="terminal">
+    budgie@host:~/$ ./gradlew test
+            </div>
+
+            <div class="terminal">
+    budgie@host:~/$ ./gradlew test --tests "dev.johnwatts.package.TestClass"
+            </div>
+
+            <div class="terminal">
+    budgie@host:~/$ ./gradlew test --tests "dev.johnwatts.package.TestClass.method"
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>assertions</h3>
+            <pre>
+
+    import static org.junit.jupiter.api.Assertions.*;
+
+            </pre>
+        </div>
+        <div class="section">
+            <h3>annotations</h3>
+            <pre>
+    @Test
+    public void foo()
+
+    @BeforeEach
+    public void foo()
+    // Order of execution of multiple @BeforeEach methods is not guaranteed
+    // Runs before every test is run
+
+    @BeforeAll
+    public void foo()
+    // Order of execution of multiple @BeforeAll methods is not guaranteed
+    // Runs once before all tests are run
+
+    @AfterEach
+    // Runs after each test is run; order is not guaranteed
+
+    @AfterAll
+    // Runs after all tests have completed
+
+            </pre>
+        </div>
+    </div>
+    <div class="section">
+        <h2>mockito</h2>
+        <div class="section">
+            <h3>gradle</h3>
+<pre>
+    dependencies {
+        testImplementation (
+        'org.junit.jupiter:junit-jupiter-api:5.6.0',
+        'org.mockito:mockito-core:3.8.0',
+        'org.mockito:mockito-junit-jupiter:3.8.0'
+        )
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+</pre>
+        </div>
+        <div class="section">
+            <h3>usage</h3>
+            <pre>
+    import static org.mockito.Mockito.*;
+
+    @ExtendWith(MockitoExtension.class)
+    class ClassToTest {
+
+        @Mock
+        Foo mockedFoo;
+
+        @Mock
+        Bar mockedBar;
+
+        // proceed with caution, these may be a little dodgy
+        @Test
+        public void test() {
+            when(mockedFoo.methodCall()).thenReturn(mockedBar);
+            when(mockedBar.someMethod()).thenCallRealMethod();
+            doNothing().when(mockedFoo).someVoidMethod();
+            doThrow(new UncheckedException()).when(mockedBar).needThisToThrow();
+
+            verify(mockedFoo).getOutputFor(anyInt());
+            verify(mockedBar, times(3)).getOutputFor(anyInt());
+        }
+</pre>
+        </div>
+    </div>
+</article>
+</body>
+</html>
