@@ -87,7 +87,7 @@ div.section {
 
 div.code {
     white-space: pre;
-    overflow: scroll;
+    overflow: auto;
     font-family: monospace;
 }
 
