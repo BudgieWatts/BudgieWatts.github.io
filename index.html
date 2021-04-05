@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cheat sheet</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="site/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -47,9 +48,7 @@ budgie@host:~/$ ./gradlew test --tests "dev.johnwatts.package.TestClass.method"
         <div class="section">
             <h3>assertions</h3>
             <div class="code">
-
 import static org.junit.jupiter.api.Assertions.*;
-
             </div>
         </div>
         <div class="section">
@@ -73,7 +72,6 @@ public void foo()
 
 @AfterAll
 // Runs after all tests have completed
-
             </div>
         </div>
     </div>
@@ -121,8 +119,8 @@ class ClassToTest {
         verify(mockedFoo).getOutputFor(anyInt());
         verify(mockedBar, times(3)).getOutputFor(anyInt());
     }
-
         </div>
+    </div>
     </div>
 </article>
 </body>
